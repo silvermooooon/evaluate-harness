@@ -1,0 +1,115 @@
+{
+  "benchmark": "TheAgentCompany",
+  "upstream_commit": "98b68ef82a47690c316f42fddb05baafaab56851",
+  "task_image_version": "1.0.0",
+  "selection": "Purposive small deterministic ownCloud-only subset; not a random or representative sample of the complete benchmark.",
+  "planned_repeats_per_harness": 2,
+  "primary_tasks": [
+    "admin-remove-pages-pdf",
+    "ds-format-excel-sheets",
+    "finance-expense-validation",
+    "hr-resume-categorization"
+  ],
+  "tasks": [
+    {
+      "id": "admin-remove-pages-pdf",
+      "role": "primary",
+      "category": "document_processing",
+      "description": "Download a research PDF, identify the end of references, and save the shortened PDF.",
+      "dependencies": [
+        "owncloud"
+      ],
+      "checkpoints": 3,
+      "grading": "deterministic final-file checks; official completion bonus retained",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/admin-remove-pages-pdf",
+      "image": "ghcr.io/theagentcompany/admin-remove-pages-pdf-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    },
+    {
+      "id": "ds-format-excel-sheets",
+      "role": "primary",
+      "category": "spreadsheet_editing",
+      "description": "Download an XLSX, preserve its original sheet, create and format a second sheet, and upload the result.",
+      "dependencies": [
+        "owncloud"
+      ],
+      "checkpoints": 4,
+      "grading": "deterministic source preservation, data equality, fill and alignment checks",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/ds-format-excel-sheets",
+      "image": "ghcr.io/theagentcompany/ds-format-excel-sheets-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    },
+    {
+      "id": "finance-expense-validation",
+      "role": "primary",
+      "category": "business_data_analysis",
+      "description": "Apply categorization rules to expense records and produce corrected transactions plus an aggregate report.",
+      "dependencies": [
+        "owncloud"
+      ],
+      "checkpoints": 4,
+      "grading": "deterministic trajectory-path, spreadsheet and CSV checks; official completion bonus retained",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/finance-expense-validation",
+      "image": "ghcr.io/theagentcompany/finance-expense-validation-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    },
+    {
+      "id": "hr-resume-categorization",
+      "role": "primary",
+      "category": "document_batch_processing",
+      "description": "Download a resume archive, inspect work experience, and organize the documents by career stage.",
+      "dependencies": [
+        "owncloud"
+      ],
+      "checkpoints": 4,
+      "grading": "deterministic output-directory checks",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/hr-resume-categorization",
+      "image": "ghcr.io/theagentcompany/hr-resume-categorization-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    },
+    {
+      "id": "ds-sql-exercise",
+      "role": "smoke",
+      "category": "sql",
+      "description": "Inspect a local SQLite database and produce three query-answer files.",
+      "dependencies": [],
+      "checkpoints": 3,
+      "grading": "deterministic final-file checks",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/ds-sql-exercise",
+      "image": "ghcr.io/theagentcompany/ds-sql-exercise-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    },
+    {
+      "id": "sde-install-go",
+      "role": "optional_smoke",
+      "category": "environment_setup",
+      "description": "Install the Go version required by the original task.",
+      "dependencies": [],
+      "checkpoints": 2,
+      "grading": "deterministic installed-command/version checks",
+      "task_source": "https://github.com/TheAgentCompany/TheAgentCompany/tree/98b68ef82a47690c316f42fddb05baafaab56851/workspaces/tasks/sde-install-go",
+      "image": "ghcr.io/theagentcompany/sde-install-go-image:1.0.0",
+      "needs_environment_llm": false,
+      "needs_npc": false,
+      "custom_init_hooks": false
+    }
+  ],
+  "selection_notes": [
+    "Only three upstream tasks have no declared service dependencies: ds-sql-exercise, sde-install-go, and sde-install-openjdk.",
+    "Smoke tasks are reported separately from the primary subset.",
+    "Original task instructions, initial data, graders and scoring strategies must remain unchanged.",
+    "The candidate ds-coffee-shop-database-management was excluded after finding a checkpoint-weight implementation discrepancy; no grader repair was made.",
+    "Reading evaluator code is permitted for the evaluator operator; grader information must not be included in examinee prompts."
+  ],
+  "formal_run_label": "formal"
+}

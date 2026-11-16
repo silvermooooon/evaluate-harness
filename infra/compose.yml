@@ -1,0 +1,16 @@
+name: tac-eval
+
+services:
+  owncloud:
+    image: ghcr.io/theagentcompany/servers-owncloud:1.0.0
+    platform: linux/amd64
+    container_name: tac-eval-owncloud
+    ports:
+      - "8092:80"
+    environment:
+      OWNCLOUD_DOMAIN: the-agent-company.com:8092
+      OWNCLOUD_TRUSTED_DOMAINS: localhost,the-agent-company.com:8092
+      OWNCLOUD_ADMIN_USERNAME: theagentcompany
+      OWNCLOUD_ADMIN_PASSWORD: theagentcompany
+    extra_hosts:
+      - "the-agent-company.com:host-gateway"

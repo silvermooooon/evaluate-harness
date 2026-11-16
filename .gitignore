@@ -1,0 +1,15 @@
+# Local experiment inputs, credentials, datasets, binaries and evidence.
+/vendor/
+/.tools/
+/runs/
+/reports/
+/tmp/
+/.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.DS_Store
+# This local renderer embeds case-specific analysis from private run artifacts.
+/scripts/render_report.py
